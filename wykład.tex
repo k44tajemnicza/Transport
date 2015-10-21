@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+%\renewcommand{\thesection}{\Roman{section}}  %zmiana section na rzymskie
+\usepackage{amsmath, amsfonts, amsthm, amssymb}   % matematyka
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[margin=60pt]{geometry}
+%\usepackage[usenames,dvipsnames,table,xcdraw]{xcolor} % kolorowanie 
+\usepackage{array} % taka tabelka dobra do macierzy
+\usepackage{multirow}
+\usepackage{hyperref} % linkowanie
+\usepackage{relsize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\ul}[1]{\ensuremath{\underline{#1}}}
+\renewcommand{\r}{\vec{r}}
+\renewcommand{\j}{\vec{j}}
+\renewcommand{\v}{\vec{v}}
+\newcommand{\B}{\vec{B}(\vec{r},t)}
+\newcommand{\E}{\vec{E}(\vec{r},t)}
+\renewcommand{\arg}{(\vec{r},t)}
+\newcommand{\argg}{(\vec{r},\vec{r}',t,t')}
+\newcommand{\ave}[1]{\left< #1 \right>}
+\newcommand{\Brho}{\mathlarger{\mathlarger{\rho}}}
+\title{Wstęp do kwantowej teorii transportu elektronowego}
+\author{Sylwia Gołąb, Paweł Rzońca}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% new subsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{01.tex}
+
+
+
+
+\subsection{Podsumowanie}
+Równania Maxwella w postaci makroskopowej (w ośrodkach materialnych) mają postać:
+\begin{equation} \nabla \cdot \vec{D}\arg=\wp\arg \label{r1}
+ \end{equation}
+  
+  \begin{equation} \nabla \times \vec{H}\arg-\partial_t\vec{D}\arg=\vec{J}\arg \label{r2}
+  \end{equation}
+
+  \begin{equation} \nabla \times \E+\partial_t \B=\vec{0} \label{r3}\end{equation} 
+
+  \begin{equation} \nabla \cdot \B=0 \end{equation}
+  gdzie $\wp$ oznacza makroskopową gęstość ładunku, zdefiniowaną poprzednio jako: $\wp=<q_e\sum_i\delta(\r-\r_i(t))>+<\sum_nq_n\delta(\r-\r_n(t))$
+
+  wn.1. Makroskopowe pola $\E,\B$ są wartościami średnimi pól mikroskopowych $\vec{e},\vec{b}$. Są to pola pierwotne, natomiast pola $\vec{D},\vec{H}$ są polami wtórnymi wynikającymi z ustalonej procedury średniowania.
+
+  \subsection{Zasada zachowania ładunku}
+  \subsubsection{Ogólne wyprowadzenie}
+  Lokalnie (czyli w ośrodku) jest spełniona zasada zachowania ładunku, tzn. zmiana gęstości ładunku w ograniczonym obszarze $\Omega$ jest spowodowana przepływem prądu przez powierzchnię zamkniętą $\partial\Omega$ otaczającą ten obszar.
+
+  (RYSUNEK WSTAW)
+
+  \begin{equation}
+  \frac{dQ}{dt}=-\int \vec{dS}\cdot\vec{J}\arg \label{zl}
+  \end{equation}
+  gdzie: 
+  \begin{itemize}
+  \item Q- całkowity ładunek, wyrażający się wzorem:
+  \begin{equation}Q(t)=\int d^3r \rho\arg \label{Q} \end{equation}
+  \item $\vec{dS}$  - wektor powierzchni, którego długość jest równa polu powierzchni, 
+  \item natomiast wyrażenie po prawej stronie to natężenie prądu będące równe strumieniowi przepływającemu przez daną powierzchnię:
+  \begin{equation}
+  I(t)=\int \vec{dS}\cdot\vec{J}\arg 
+  \end{equation}
+  \end{itemize}
+  uw. Minus w równaniu (\ref{zl}) oznacza, że ładunek może tylko wypływać spod powierzchni.\\
+  uw2. Wyrażenie pod całką to strumień prądu płynący przez rozważany obszar.
+
+  Wstawmy równanie (\ref{Q}) do równania (\ref{zl}):
+  \begin{equation}
+  \partial_t \int_{\partial\Omega} d^3r\rho\arg= -\int_{\partial\Omega}\vec{dS}\cdot\vec{J}\arg 
+  \stackrel{\text{tw.Gaussa}}{=} -\int_\Omega d^3r\nabla\cdot\vec{J}\arg
+  \end{equation}
+  \begin{equation}
+  \int d^3r\{\partial_t \rho\arg+\nabla \cdot\vec{J}\arg\}=0
+  \end{equation}
+  Stąd:
+  \begin{equation}
+  \partial_t \rho\arg+\nabla \cdot\vec{J}\arg=0 \label{zl2} \end{equation}
+  Wzór (\ref{zl2}) to prawo zachowania ładunku - ładunek nie może zniknąć, może tylko przepłynąć przez powierzchnię.
+
+  \subsubsection{Wyprowadzenie praw zachowania ładunku z praw Maxwella}
+  Zadziałajmy obustronnie $\partial_t$ na 1. równanie Maxwella (\ref{r1}) oraz $\nabla\cdot$ na 2. równanie Maxwella (\ref{r2}):
+  \begin{equation}
+  (1)~~\Rightarrow ~~\partial_t \nabla\cdot \vec{D}\arg=\delta_t \rho(\r,t) ~~\Rightarrow~~ \nabla\cdot[\partial_t\vec{D}\arg=\partial_t\rho\arg \end{equation}
+   \begin{equation}
+    (2)~~\Rightarrow~~ \underbrace{\nabla\cdot[\nabla\times\vec{H}\arg]}_{=0 \text{ (bo jest to div z rot)}}-\nabla\cdot\partial_t\vec{D}\arg=\nabla\cdot\vec{J}\arg
+	\end{equation}
+	Łącząc oba te równania dostajemy:
+	\begin{equation}
+	-\partial_t\rho\arg=\nabla\cdot\vec{J}\arg \label{zz}
+	\end{equation}
+	Równanie (\ref{zz}) to zasada zachowania ładunku.
+
+	\subsubsection{Równania materiałowe} 
+	Z jednej strony równania Maxwella są niezmiennicze względem zmiany ośrodka, z drugiej strony ich rozwiązania- pola $\E,\B$- są różne w różnych ośrodkach. Dlatego potrzebujemy dodatkowych równań, które będą określać ośrodek- dlatego postulujemy równania materiałowe:
+	\begin{equation} {D}_i\arg=\sum_{j/1}^3\int d^3r'\int_{-\infty}^t dt' \epsilon_{ij}\argg E_j \label{rm1}\end{equation}
+	\begin{equation} H_i \arg =\sum_{j/1}^3\int d^3r'\int_{-\infty}^t dt' \mu^{-1}_{ij}\argg B_j \label{rm2}\end{equation}
+	\begin{equation} J_i \arg =\sum_{j/1}^3\int d^3r'\int_{-\infty}^t dt' \sigma_{ij}\argg E_j \label{rm3}  \text{ - mikroskopowe prawo Ohma}\end{equation}
+	\begin{verse}\textbf{wn.1.} Mamy zatem zestaw równań: Równania Maxwella+równania materiałowe \end{verse}
+	\begin{verse}\textbf{wn.2.} W równaniach materiałowych jądrem całkowym są:\\
+	(\ref{rm1}): ~ $\epsilon_{ij}\argg$ - to element tensora przenikalności elektrycznej ośrodka\\
+	(\ref{rm2}):  ~$\mu^{-1}_{ij}\argg$ - to element tensora odwrotności przenikalności magnetycznej\\
+	(\ref{rm3}):  ~$\sigma_{ij}\argg$  - to element tensora przewodnictwa elektrycznego. \end{verse}
+	\begin{verse} \textbf{uw.1.} Równania materiałowe mają swoje uzasadnienie w termodynamice stanów nierównowagowych, natomiast do elektrodynamiki zostały dodane \textsl{ad hoc}.
+	uw.2. \end{verse}
+	\begin{verse} \textbf{uw.2.} Ostatnie (\ref{rm3}) równanie to mikroskopowe (lokalne) prawo Ohma, które można również zapisać w popularniejszej wersji:
+	\begin{equation} \vec{J} \arg =\sigma\arg E\arg \end{equation} \end{verse}
+
+	\subsubsection{Równania Maxwella a prąd stały}
+	\begin{verse} \textbf{Zał.} Załóżmy, że \textbf{prąd jest stały}, tzn. płynie w sposób ciągły i nie gromadzi się (jest stały w czasie). \end{verse}
+
+	Wówczas:\begin{itemize}
+	\item Równanie Maxwella (\ref{r2}) $\Rightarrow$ powstaje stałe pole $\vec{H}$
+	\item Równanie Maxwella (\ref{r3}) $\Rightarrow ~~ \nabla\times\vec{E}(\r)+\underbrace{\partial_t\vec{B}(\r)}_{=0}=0$ \\
+	Stąd:
+	\begin{equation} \nabla\times\vec{E}(\r)=0 \end{equation}
+	Ponieważ wiemy, że dywergencja z rotacji daje 0, to $\vec{E}$ musi dać się przedstawić jako:
+	\begin{equation} \vec{E}=-\nabla V(\r) \label{Epot}\end{equation}
+	gdzie $V(\r)$ to potencjał.
+	\begin{verse} \textbf{wn.} Jeśli prąd jest stały, to pole elektryczne ma potencjał. \end{verse} 
+	\item Prawo zachowania ładunku (\ref{zl2}) $\Rightarrow ~~ \underbrace{\partial_t\rho\arg}_{=0}+\nabla\cdot\vec{J}\arg=0 $
+	\begin{equation} \nabla\cdot\vec{J}({\r})=0 \end{equation}
+	\item Mikroskopowe prawo Ohma $\Rightarrow ~~ \nabla[\sigma(\r)\vec{E}(\r)]=0$ \\
+	Łącząc to równanie z równaniem (\ref{Epot}), dostajemy:
+	\end{itemize}
+\end{document}
+
+
